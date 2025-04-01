@@ -16,6 +16,18 @@ module.exports = defineConfig({
     }
   },
   modules: [
+    {
+      resolve: "@medusajs/medusa/cache-redis",
+      options: {
+        redisUrl: process.env.REDIS_URL,
+      },
+    },
+    {
+      resolve: "@medusajs/medusa/event-bus-redis",
+      options: {
+        redisUrl: process.env.REDIS_URL,
+      },
+    },
     { resolve: './src/modules/seller' },
     { resolve: './src/modules/marketplace' },
     { resolve: './src/modules/configuration' },
