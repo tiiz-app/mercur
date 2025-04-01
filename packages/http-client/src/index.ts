@@ -24154,6 +24154,49 @@ export interface StoreCreateReview {
 }
 
 /**
+ * Seller
+ * A seller object with its properties
+ */
+export interface StoreSeller {
+  /** The unique identifier of the seller. */
+  id?: string;
+  /**
+   * The date with timezone at which the resource was created.
+   * @format date-time
+   */
+  created_at?: string;
+  /**
+   * The date with timezone at which the resource was last updated.
+   * @format date-time
+   */
+  updated_at?: string;
+  /** The name of the seller. */
+  name?: string;
+  /** A description of the seller. */
+  description?: string | null;
+  /** A unique handle for the seller. */
+  handle?: string;
+  /** Store contact email. */
+  email?: string | null;
+  /** Store contact phone. */
+  phone?: string | null;
+  /** URL to the seller's photo. */
+  photo?: string | null;
+  /** Seller address line. */
+  address_line?: string | null;
+  /** Seller postal code. */
+  postal_code?: string | null;
+  /** Seller city. */
+  city?: string | null;
+  /** Seller state. */
+  state?: string | null;
+  /** Seller country code. */
+  country_code?: string | null;
+  /** Seller tax id. */
+  tax_id?: string | null;
+}
+
+/**
  * Update Review
  * A schema for the review update.
  */
@@ -56643,6 +56686,78 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       >({
         path: `/store/reviews/${id}`,
         method: "DELETE",
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Retrieves the seller list.
+     *
+     * @tags Store
+     * @name StoreGetSellers
+     * @summary Get sellers
+     * @request GET:/store/seller
+     * @secure
+     */
+    storeGetSellers: (
+      query?: {
+        /** The number of items to skip before starting to collect the result set. */
+        offset?: number;
+        /** The number of items to return. */
+        limit?: number;
+        /** Comma-separated fields to include in the response. */
+        fields?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          products?: StoreSeller[];
+          /** The total number of items available */
+          count?: number;
+          /** The number of items skipped before these items */
+          offset?: number;
+          /** The number of items per page */
+          limit?: number;
+        },
+        any
+      >({
+        path: `/store/seller`,
+        method: "GET",
+        query: query,
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Retrieves seller of specified handle
+     *
+     * @tags Seller
+     * @name StoreGetSellerByHandle
+     * @summary Get seller
+     * @request GET:/store/seller/{handle}
+     * @secure
+     */
+    storeGetSellerByHandle: (
+      handle: string,
+      query?: {
+        /** Comma-separated fields to include in the response. */
+        fields?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** A seller object with its properties */
+          product?: StoreSeller;
+        },
+        any
+      >({
+        path: `/store/seller/${handle}`,
+        method: "GET",
+        query: query,
         secure: true,
         format: "json",
         ...params,
