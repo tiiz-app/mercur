@@ -19,13 +19,13 @@ module.exports = defineConfig({
     {
       resolve: "@medusajs/medusa/cache-redis",
       options: {
-        redisUrl: process.env.REDIS_URL,
+        redisUrl: "redis://default:QaKhcDnhoePpbRULGfdzswmiUeMzZtno@redis.railway.internal:6379",
       },
     },
     {
       resolve: "@medusajs/medusa/event-bus-redis",
       options: {
-        redisUrl: process.env.REDIS_URL,
+        redisUrl: "redis://default:QaKhcDnhoePpbRULGfdzswmiUeMzZtno@redis.railway.internal:6379",
       },
     },
     { resolve: './src/modules/seller' },
