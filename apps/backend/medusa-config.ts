@@ -19,13 +19,13 @@ module.exports = defineConfig({
     {
       resolve: "@medusajs/medusa/cache-redis",
       options: {
-        redisUrl: "redis://default:QaKhcDnhoePpbRULGfdzswmiUeMzZtno@redis.railway.internal:6379",
+        redisUrl: "redis://default:QaKhcDnhoePpbRULGfdzswmiUeMzZtno@redis.railway.internal:6379?family=0",
       },
     },
     {
       resolve: "@medusajs/medusa/event-bus-redis",
       options: {
-        redisUrl: "redis://default:QaKhcDnhoePpbRULGfdzswmiUeMzZtno@redis.railway.internal:6379",
+        redisUrl: "redis://default:QaKhcDnhoePpbRULGfdzswmiUeMzZtno@redis.railway.internal:6379?family=0",
       },
     },
     { resolve: './src/modules/seller' },
